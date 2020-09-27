@@ -1,4 +1,5 @@
 function findFirstRepeated(arr) {
+    if (!Array.isArray(arr)) return null;
     const arrDup = [...arr];
     const argMap = new Map();
 
@@ -18,4 +19,4 @@ function findFirstRepeated(arr) {
     return result;
 }
 
-findFirstRepeated([2,3,4,5,6,7,5,6, 8, 9]);
+findFirstRepeated([2,3, 3, 4,5,6,7,5,6, 8, 9]);
