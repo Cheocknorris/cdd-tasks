@@ -9,19 +9,21 @@ function findNonRepeated(arr) {
     
 
     for (let i = 0; i < arrDup.length; i++) {
-        if (argMap.has(arrDup[i])) {
-            argMap.set(arrDup[i], 1);
-        } else {
+        if (!argMap.has(arrDup[i])) {
             argMap.set(arrDup[i], 0);
+        } else {
+            argMap.set(arrDup[i], 1);
         }
     }
 
     const argArr = [...argMap];
 
+    // console.log(argArr);
+
     const result = argArr.find((index) => index[1] === 0)[0];
 
-    console.log(result);
+    return result;
 }
 
-findNonRepeated(2);
+findNonRepeated([2, 5, 2, 3, 4, 3]);
 
