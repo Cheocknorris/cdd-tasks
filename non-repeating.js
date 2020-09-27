@@ -3,22 +3,24 @@
 
 
 function findNonRepeated(arr) {
-    const uniqueArray = [];
-    const sortedArr = arr.sort((a, b) => {
-        return a - b;
-    });
+    const arrDup = [...arr];
+    const argMap = new Map();
+    
 
-    for (let i = 0; i < sortedArr.length; i++) {
-        if (sortedArr[i] !== sortedArr[i - 1] && sortedArr[i] !== sortedArr[i + 1]) {
-            uniqueArray.push(sortedArr[i]);
+    for (let i = 0; i < arrDup.length; i++) {
+        if (argMap.has(arrDup[i])) {
+            argMap.set(arrDup[i], 1);
+        } else {
+            argMap.set(arrDup[i], 0);
         }
     }
 
-    for (let i = 0; i < arr.length; i++) {
-        if (uniqueArray.includes(arr[i])) {
-            console.log(arr[i]);
-        }
-    }
+    const argArr = [...argMap];
+
+    const result = argArr.find((index) => index[1] === 0)[0];
+
+    console.log(result);
 }
 
-findNonRepeated([2,3,4,5,6,8,5,4,3,2,6,7, 9]);
+findNonRepeated([3, 4, 5, 6, 8, 5, 4, 3, 2, 6, 7, 9]);
+
