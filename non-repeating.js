@@ -3,6 +3,7 @@
 
 
 function findNonRepeated(arr) {
+    if (!Array.isArray(arr)) return null;
     const arrDup = [...arr];
     const argMap = new Map();
     
@@ -22,5 +23,5 @@ function findNonRepeated(arr) {
     console.log(result);
 }
 
-findNonRepeated([3, 4, 5, 6, 8, 5, 4, 3, 2, 6, 7, 9]);
+findNonRepeated(2);
 
