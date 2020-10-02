@@ -25,6 +25,9 @@ class Queue {
     }
   
     lookUp(value) {
+        if (!value) {
+            throw new Error('Invalid input');
+        } 
         if (this.isEmpty()) return false; 
         for (let i = 0; i < this.store.length; i++) {
             if (this.store[i] === value) {
