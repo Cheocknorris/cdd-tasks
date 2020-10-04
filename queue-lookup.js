@@ -1,6 +1,6 @@
 class Queue {
     constructor() {
-      this.store = new Array(3);
+      this.store = new Array(100);
       this.front = 0;
       this.rear = 0;
     }
@@ -28,13 +28,15 @@ class Queue {
         if (!value) {
             throw new Error('Invalid input');
         } 
+        
         if (this.isEmpty()) return false; 
-        for (let i = 0; i < this.store.length; i++) {
-            if (this.store[i] === value) {
-                return true;
-            }
-        }
-        return false;
+        
+        let frontDup = this.front;
+        while (frontDup <= this.rear) {
+          if (this.store[frontDup] === value) return frontDup;
+          frontDup++;
+        } 
+        return null;
     }
 
     peek() {
@@ -54,4 +56,5 @@ class Queue {
   console.log(queue.enqueue(5), true);
   console.log(queue.enqueue(6), true);
   console.log(queue.enqueue(7), true);
-  console.log('lookUp: ', queue.lookUp());
+  console.log(queue.dequeue());
+  console.log(queue.lookUp(5));
