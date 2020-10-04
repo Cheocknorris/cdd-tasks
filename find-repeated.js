@@ -13,10 +13,12 @@ function findFirstRepeated(arr) {
 
     const mapArr = [...argMap];
 
-    // console.log(mapArr);
+    console.log(mapArr);
 
+    // Error - give error if arr is empty array
     const result = mapArr.find(index => index[1] === 1)[0];
     return result;
 }
 
-findFirstRepeated([2,3, 3, 4,5,6,7,5,6, 8, 9]);
+console.log(findFirstRepeated([2, 3, 3, 4, 5, 6, 7, 5, 6, 8, 9]));
+console.log(findFirstRepeated([]));

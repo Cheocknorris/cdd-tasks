@@ -1,6 +1,6 @@
 class Queue {
     constructor(queueSize) {
-      // storage for the priority queue
+        // storage for the priority queue
         this.storage = [];
         this.size = queueSize;
     }
@@ -10,9 +10,9 @@ class Queue {
         return true;
     }
     dequeue() {
-      // if the queue is empty, return null
+        // if the queue is empty, return null
         if (this.isEmpty()) return null;
-      // otherwise remove element from the front and return
+        // otherwise remove element from the front and return
         return this.storage.shift();
     }
     peek() {
@@ -48,7 +48,7 @@ class PriorityQueue {
             if (queue && !queue.isEmpty()) {
                 return queue.dequeue();
             }
-        } 
+        }
     }
 
 
@@ -94,12 +94,12 @@ console.log(priorityQueue.queues);
 //       return this.storage.length === this.size;
 //     }
 //   }
-  
+
 //   class PriorityQueue {
 //     constructor() {
 //       this.priorityArray = [];
 //     }
-  
+
 //     enqueue(value, priority) {
 //       if (this.priorityArray[priority]) {
 //         let queue = this.priorityArray[priority];
@@ -108,13 +108,13 @@ console.log(priorityQueue.queues);
 //         let queue = this.priorityArray[priority] = new SimpleQueue();
 //         queue.enqueue(value);
 //       }
-  
+
 //       return true;
 //     }
-  
+
 //     dequeue() {
 //       if (this.isEmpty()) return null;
-  
+
 //       for (let i = this.priorityArray.length - 1; i >= 0; i--) {
 //         let queue = this.priorityArray[i];
 //         if (queue && !queue.isEmpty()) {
@@ -122,22 +122,22 @@ console.log(priorityQueue.queues);
 //         }
 //       }
 //     }
-  
+
 //     peek() {
 //       if (this.isEmpty()) return null;
-  
+
 //       for (let i = this.priorityArray.length - 1; i >= 0; i--) {
 //         if (this.priorityArray[i]) {
 //           return this.priorityArray[i].peek();
 //         }
 //       }
 //     }
-  
+
 //     isEmpty() {
 //       return this.priorityArray.length == 0;
 //     }
 //   }
-  
+
 
 
 
@@ -151,4 +151,3 @@ console.log(priorityQueue.queues);
 //   console.log(queue.dequeue()); // 4
 //   console.log(queue.dequeue()); // 20
 //   console.log(queue.isEmpty()); // true
-  

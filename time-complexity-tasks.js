@@ -12,7 +12,7 @@ function doSomething1() {
 }
 doSomething1();
 // O(n log n)
-// O(8 * 4) 
+// O(8 * 4)
 // O(32)
 
 
@@ -38,4 +38,3 @@ function doSomething3() {
 }
 doSomething3();
 // On^2
-
