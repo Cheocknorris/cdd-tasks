@@ -7,6 +7,7 @@ class Stack {
     push(value) {
       this.stackPointer++;
       this.store[this.stackPointer] = value;
+      return true;
     }
   
     pop() {
@@ -20,12 +21,14 @@ class Stack {
             throw new Error('Invalid input');
         } 
         if (this.isEmpty()) return false;
-        for (let i = 0; i < this.store.length; i++) {
-            if (this.store[i] === value) {
-                return true
-            }
+        let stackPointerDup = this.stackPointer;
+        while (stackPointerDup >= 0) {
+          if (this.store[stackPointerDup] === value) {
+            return stackPointerDup;
+          }
+          stackPointerDup--;
         }
-        return false;
+        return null;
     }
     
     isEmpty() {
@@ -42,7 +45,10 @@ class Stack {
   let stack = new Stack();
   console.log(stack.isEmpty(), 'true');
   console.log(stack.peek(), 'null');
-  console.log(stack.push(4));
-  console.log(stack.push(5));
-  console.log(stack.push(6));
-  console.log(stack.lookUp());
+  console.log(stack.push(4), true);
+  console.log(stack.push(5), true);
+  console.log(stack.push(6), true);
+  console.log(stack.pop(), 6);
+  console.log(stack.push(7), true);
+  console.log(stack.lookUp(3));
+  
