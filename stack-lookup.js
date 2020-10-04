@@ -28,7 +28,7 @@ class Stack {
           }
           stackPointerDup--;
         }
-        return null;
+        return -1;
     }
     
     isEmpty() {

@@ -36,7 +36,7 @@ class Queue {
           if (this.store[frontDup] === value) return frontDup;
           frontDup++;
         } 
-        return null;
+        return -1;
     }
 
     peek() {

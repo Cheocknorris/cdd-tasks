@@ -1,43 +1,56 @@
-class SimpleQueue {
-    constructor(queueSize) {
-      // storage for the priority queue
-      this.storage = [];
-      this.size = queueSize;
+class Queue {
+  constructor() {
+    this.store = new Array(100);
+    this.front = 0;
+    this.rear = 0;
+  }
+
+  enqueue(value) {
+    if (this.rear === this.store.length) return null; // full
+
+    this.store[this.rear] = value;
+    this.rear++;
+    return true;
+  }
+
+  dequeue() {
+    if (this.isEmpty()) return null;
+
+    let valueAtFront = this.store[this.front];
+    this.front++;
+    if (this.front == this.rear) {
+      this.front = this.rear = 0;
     }
-    enqueue(value) {
-      if (this.isFull()) return false;
-      this.storage.push(value); // add at end
-      return true;
-    }
-    dequeue() {
-      if (this.isEmpty()) return null;
-      return this.storage.shift();
-    }
-    lookUp(value) {
+    return valueAtFront;
+  }
+
+  lookUp(value) {
       if (!value) {
-        throw new Error('Invalid input');
+          throw new Error('Invalid input');
       } 
+      
       if (this.isEmpty()) return false; 
-      for (let i = 0; i < this.storage.length; i++) {
-          if (this.storage[i] === value) {
-              return true;
-          }
-      }
-      return false;
+      
+      let frontDup = this.front;
+      while (frontDup <= this.rear) {
+        if (this.store[frontDup] === value) return frontDup;
+        frontDup++;
+      } 
+      return -1;
   }
-    peek() {
-      if (this.isEmpty()) return null;
-      return this.storage[0];
-    }
-    isEmpty() {
-      return this.storage.length == 0;
-    }
-    isFull() {
-      return this.storage.length === this.size;
-    }
+
+  peek() {
+    if (this.isEmpty()) return null;
+
+    return this.store[this.front];
   }
-  
-  class PriorityQueue {
+
+  isEmpty() {
+    return this.front == this.rear;
+  }
+}  
+
+class PriorityQueue {
     constructor() {
       this.priorityArray = [];
     }
@@ -47,7 +60,7 @@ class SimpleQueue {
         let queue = this.priorityArray[priority];
         queue.enqueue(value);
       } else {
-        let queue = this.priorityArray[priority] = new SimpleQueue();
+        let queue = this.priorityArray[priority] = new Queue();
         queue.enqueue(value);
       }
   
@@ -79,27 +92,15 @@ class SimpleQueue {
       if (!value) {
         throw new Error('Invalid input');
     } 
-      if (this.isEmpty()) return false;
+      if (this.isEmpty()) return null;
       for (let i = this.priorityArray.length - 1; i >= 0; i--) {
         if (this.priorityArray[i]) {
-          return this.priorityArray[i].lookUp(value);
+          let index = this.priorityArray[i].lookUp(value);
+          if (index >= 0) return index;
         }
       }
+      return -1;
     }
-
-    // lookUp(value) {
-    //         for (let i = this.priorityArray.length - 1; i >= 0; i--) {
-    //             if (this.priorityArray[i]) {
-    //                 let storage = this.priorityArray[i].storage;
-    //                 for (let j = 0; j < storage.length; j++) {
-    //                     if (storage[j] === value) {
-    //                         return true;
-    //                     }
-    //                 }
-    //             }  
-    //         }
-    //     return false;
-    //     }
   
     isEmpty() {
       return this.priorityArray.length == 0;
@@ -116,9 +117,8 @@ console.log(priorityQueue.enqueue(24, 3), true);
 console.log(priorityQueue.enqueue(24, 2), true);
 console.log(priorityQueue.enqueue(24, 1), true);
 console.log(priorityQueue.peek(), 24);
-// console.log(priorityQueue.priorityArray[1].storage);
-console.log(priorityQueue.lookUp(), 'lookUp');
-// priorityQueue.lookUpBoolean(0);
+console.log(priorityQueue.lookUp(20), 'lookUp');
+
 
 
   
