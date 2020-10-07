@@ -1,3 +1,14 @@
+// A fibonacci series is defined as 
+// Term(n) = Term(n-1) + Term(n-2); 
+// Except the first two terms being 0 and 1;
+
+// Example = 0, 1, 1, 2, 3, 5, 8, 13 and so on. 
+
+// Write a function to print the first N terms of the fibonacci series.
+// Example - 
+// fibonacci(4) prints 0, 1, 1, 2
+// fibonacci(6) prints 0, 1, 1, 2, 3, 5
+// fibonacci(8) prints 0, 1, 1, 2, 3, 5, 8, 13
 
 function generateFibonacci(fibonacciLength) {
     
