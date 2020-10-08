@@ -5,33 +5,47 @@
 // Output: 			have blue got red.
 
 function findUniqueWords(sentence1, sentence2) {
-    if (typeof sentence1 !== 'string' || typeof sentence2 !== 'string') throw new Error('Invalid input')
+    if (typeof sentence1 !== 'string' || typeof sentence2 !== 'string') {
+        throw new Error('Invalid input');
+    }
 
     let firstSentence = sentence1.split(' ');
     let secondSentence = sentence2.split(' ');
     let uniqueWords = [];
-
     let stringComparer = new Map();
 
-    addStringsToComparer(firstSentence, stringComparer);
-    addStringsToComparer(secondSentence, stringComparer);
-    
-    for (let [key, value] of stringComparer) {
-        if (value === 'unique') uniqueWords.push(key);
-    }
-
-    return `${uniqueWords.join(' ')}.`;
+    try {
+        addStringsToComparer(firstSentence, stringComparer);
+        addStringsToComparer(secondSentence, stringComparer);
+        collectUniqueWords(stringComparer, uniqueWords);
+        return `${uniqueWords.join(' ')}.`;
+    } catch(e) {
+        console.log(e);
+    }    
 }
 
-
-
-function addStringsToComparer(arr, stringComparer) {
+function addStringsToComparer(arr, map) {
+    if (!Array.isArray(arr)
+    || map instanceof Map === false) {
+        throw new Error('unable to compare sentences');
+    }
+    
     for (let word of arr) {
-        if (!stringComparer.has(word)) {
-            stringComparer.set(word, 'unique')
+        if (!map.has(word)) {
+            map.set(word, 'unique')
         } else {
-            stringComparer.set(word, 'repeated')
+            map.set(word, 'repeated')
         }
+    }
+}
+
+function collectUniqueWords(map, arr) {
+    if (!Array.isArray(arr)|| map instanceof Map === false) {
+        throw new Error('unable to store unique words');
+    }
+
+    for (let [key, value] of map) {
+        if (value === 'unique') arr.push(key);
     }
 }
 
