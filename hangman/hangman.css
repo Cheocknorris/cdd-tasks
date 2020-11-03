@@ -1,0 +1,106 @@
+body, html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+body {
+    font: 11px Roboto, Helvetica, Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+
+#container {
+    width:80%;
+    background-color: seashell;
+    padding: 1em;
+    text-align: center;
+}
+
+/* section{
+} */
+
+.result {
+    font: 16px monospace;
+    margin: 1em 0;
+    display: block;
+}
+
+/* .hangman {
+    width: 400px;
+    height: 600px;
+} */
+
+img {
+    width: 400px;
+    display: none;
+    margin: auto;
+}
+
+.visible {
+    display: block;
+}
+
+.debug {
+    background-color: hotpink;
+    color: white;
+    padding: 1em;
+    width: 100%;
+}
+
+.word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.letter {
+    border-bottom: 3px solid;
+    display: inline-flex;
+    font-size: 20px;
+    align-items: center;
+    margin: 0 3px;
+    height: 40px;
+    width: 20px;
+}
+
+.wrong-letters-container span{
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+.win {
+    visibility: hidden;
+}
+
+.lose {
+    visibility: hidden;
+}
+
+.show {
+    visibility: visible;
+}
+
+
+.youlose {
+    font-size: 120%;
+    color: hotpink;
+}
+
+@media(max-width:720px) {
+    #container {
+        width: 100%;
+    }
+    img.hangman {
+        width: 90%;
+        height: 90%;
+    }
+    input[name=letter] {
+        width: 30px;
+    }
+}
