@@ -20,12 +20,13 @@
 //    }
 // }
 
+// REVIEW COMMENT
+// argument passing should be part of the calculator
 class Calculator {
     #result;
-
     performOperation(operation) {
-       this.#result = operation.perform();
-       return this.#result;
+        this.#result = operation.perform();
+        return this.#result;
     }
 
 }
@@ -35,7 +36,7 @@ class Sum {
         this.a = a;
         this.b = b;
     }
-    
+
     perform() {
         return this.a + this.b;
     }
@@ -68,7 +69,7 @@ class Divide {
         this.a = a;
         this.b = b;
     }
-    
+
     perform() {
         return this.a / this.b;
     }
@@ -76,6 +77,9 @@ class Divide {
 
 const calculator = new Calculator;
 
+// REVIEW COMMENT
+// the calculator call should be like this 
+// calculator.performOperation(param1, param2, new Operation());
 console.log(calculator.performOperation(new Sum(3, 4)), 7);
 console.log(calculator.performOperation(new Subtract(4, 3)), 1);
 console.log(calculator.performOperation(new Multiply(3, 4)), 12);

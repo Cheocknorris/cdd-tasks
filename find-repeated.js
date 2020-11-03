@@ -1,5 +1,6 @@
 function findFirstRepeated(arr) {
     if (!Array.isArray(arr)) return null;
+
     const arrDup = [...arr];
     const argMap = new Map();
 
@@ -15,7 +16,7 @@ function findFirstRepeated(arr) {
 
     console.log(mapArr);
 
-    // Error - give error if arr is empty array
+    // Error - gives error if arr is empty array
     const result = mapArr.find(index => index[1] === 1)[0];
     return result;
 }

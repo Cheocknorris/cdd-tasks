@@ -4,6 +4,8 @@
 // Sentence 2: 		I got a red pen.
 // Output: 			have blue got red.
 
+// REVIEW COMMENT
+// can be optimized, but good use of maps
 function findUniqueWords(sentence1, sentence2) {
     if (typeof sentence1 !== 'string' || typeof sentence2 !== 'string') {
         throw new Error('Invalid input');
@@ -19,17 +21,17 @@ function findUniqueWords(sentence1, sentence2) {
         addStringsToComparer(secondSentence, stringComparer);
         collectUniqueWords(stringComparer, uniqueWords);
         return `${uniqueWords.join(' ')}.`;
-    } catch(e) {
+    } catch (e) {
         console.log(e);
-    }    
+    }
 }
 
 function addStringsToComparer(arr, map) {
     if (!Array.isArray(arr)
-    || map instanceof Map === false) {
+        || map instanceof Map === false) {
         throw new Error('unable to compare sentences');
     }
-    
+
     for (let word of arr) {
         if (!map.has(word)) {
             map.set(word, 'unique')
@@ -40,7 +42,7 @@ function addStringsToComparer(arr, map) {
 }
 
 function collectUniqueWords(map, arr) {
-    if (!Array.isArray(arr)|| map instanceof Map === false) {
+    if (!Array.isArray(arr) || map instanceof Map === false) {
         throw new Error('unable to store unique words');
     }
 
