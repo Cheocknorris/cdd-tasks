@@ -4,6 +4,9 @@
 
 
 function reverseString(str) {
+    // input validation if possible
+    // if (!str || typeof str !== 'string') return null;
+    
     let stringArray = str.split(' ');
     let reversedArray = stringArray.reverse();
     let reversedString = reversedArray.join(' ');

@@ -9,7 +9,7 @@ class Stack {
 
     pop() {
         if (this.store.length === 0) {
-            return null
+            return null;
         } else {
             let last = this.store[this.store.length - 1];
             this.store.length = this.store.length - 1;

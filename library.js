@@ -1,3 +1,6 @@
+// REVIEW COMMENT
+// boot attributes need to be extandable without modifying the book class
+
 class Book {
     constructor(bookId, title, author, status, availableAsEbook) {
         this.bookId = bookId;
@@ -7,6 +10,9 @@ class Book {
         this.availableAsEbook = availableAsEbook;
     }
 
+    // REVIEW COMMENT
+    // these both functions can be combined to one function call
+    // setStatus(STATUS_AS_ENUM)
     markAsIssued(name) {
         this.status = 'issued to ' + name;
     }
@@ -40,9 +46,9 @@ class BookShelf {
     searchByTitle(title) {
         if (typeof title !== 'string') throw new Error('Invalid input')
         if (this.isEmpty()) return false;
-        
+
         const shelfCopy = [...this.storage];
-        
+
         for (let i = 0; i < shelfCopy.length; i++) {
             if (shelfCopy[i].title === title) return shelfCopy[i];
         }
@@ -52,10 +58,11 @@ class BookShelf {
 
     locateInShelf(title) {
         if (typeof title !== 'string') throw new Error('Invalid input')
+
         if (this.isEmpty()) return false;
-        
+
         const shelfCopy = [...this.storage];
-        
+
         for (let i = 0; i < shelfCopy.length; i++) {
             if (shelfCopy[i].title === title) {
                 let result = {
@@ -63,7 +70,7 @@ class BookShelf {
                     index: i
                 }
                 return result;
-            } 
+            }
         }
         return false;
     }
@@ -78,25 +85,28 @@ class Library {
     isEmpty() {
         return this.shelves.length === 0;
     }
-
+    // REVIEW COMMENT
+    // too long function
     addBook(book) {
+
+        // REVIEW COMMENT
+        // all three if else conditions can be combined with if else 
         if (this.isEmpty()) {
             let bookShelfId = this.shelves.length + 1;
             let newBookShelf = new BookShelf(bookShelfId, 5);
             newBookShelf.addBook(book);
             this.shelves = [newBookShelf];
             return true;
-        } 
+        }
 
         let currentBookShelf = this.shelves[this.shelves.length - 1];
-        if (!this.isEmpty() 
-        && !currentBookShelf.isFull()) {
+
+        if (!this.isEmpty() && !currentBookShelf.isFull()) {
             currentBookShelf.addBook(book);
             return true;
         }
 
-        if (!this.isEmpty()
-        && currentBookShelf.isFull()) {
+        if (!this.isEmpty() && currentBookShelf.isFull()) {
             let bookShelfId = this.shelves.length + 1;
             let newBookShelf = new BookShelf(bookShelfId, 5);
             newBookShelf.addBook(book);
@@ -105,15 +115,19 @@ class Library {
         }
     }
 
+    // REVIEW COMMENT
+    // catching error is good but the function need to throw the error in the catch block
+    // so that the caller can be informed about the error. otherwise, in case of book not found
+    // the function returns undefined. 
     searchByTitle(title) {
         try {
             for (let i = 0; i < this.shelves.length; i++) {
                 if (this.shelves[i].searchByTitle(title)) {
                     return this.shelves[i].searchByTitle(title);
-                } 
+                }
             }
             throw new Error('Book not found');
-        } catch(e) {
+        } catch (e) {
             console.log(e)
         }
     }
@@ -121,19 +135,21 @@ class Library {
     locateInShelf(title) {
         for (let i = 0; i < this.shelves.length; i++) {
             if (this.shelves[i].locateInShelf(title)) {
-                let result = { 
+                let result = {
                     shelf: i + 1,
                     index: this.shelves[i].locateInShelf(title).index,
                     book: this.shelves[i].locateInShelf(title).book,
                 }
                 return result;
-            }  
+            }
         }
         throw new Error('Book not found');
     }
 }
 
-
+// REVIEW COMMENT
+// the information about if a book is issue to a user or not, should be maintained 
+// in the book status. 
 class User {
     constructor(userId, name) {
         this.userId = userId;
@@ -143,14 +159,14 @@ class User {
 
     issueBook(title) {
         try {
-            if (library.searchByTitle(title) 
-            && library.searchByTitle(title).status === 'available') {
-            this.booksBorrowed.add(library.searchByTitle(title));
-            library.searchByTitle(title).markAsIssued(this.name);
-            } 
-        } catch(e) {
+            if (library.searchByTitle(title)
+                && library.searchByTitle(title).status === 'available') {
+                this.booksBorrowed.add(library.searchByTitle(title));
+                library.searchByTitle(title).markAsIssued(this.name);
+            }
+        } catch (e) {
             console.log(e);
-        }   
+        }
     }
 
     returnBook(title) {
@@ -158,12 +174,13 @@ class User {
             this.booksBorrowed.delete(library.searchByTitle(title));
             library.searchByTitle(title).markAsAvailable();
         }
-    } 
+    }
 
 }
 
-
-
+// REVIEW COMMENT
+// wrap this code in a function called test(){} inside a class called Client 
+// and run the test function of the client class 
 const bookOne = new Book(1, 'Book One', 'Author One', 'available', true);
 const bookTwo = new Book(2, 'Book Two', 'Author Two', 'available', false);
 const bookThree = new Book(3, 'Book Three', 'Author Three', 'available', true);

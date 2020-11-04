@@ -19,25 +19,25 @@ class TreeNode {
   let node2 = new TreeNode(2);
   let node1 = new TreeNode(1);
   let node6 = new TreeNode(6);
-  
+
   node8.addChildren([node7, node5]);
   node7.addChildren([node3, node9]);
   node5.addChildren([node2, node1]);
   node2.addChildren([node6]);
-  
+
   // node8 is taken as the root of the tree, do what you want
   let root = node8;
 //   console.log(root.children);
 
 function printLeaves(node) {
-    let count = node.value; 
+    let count = node.value;
     for (let i = 0; i < node.children.length; i++) {
         let child = node.children[i];
         if (child.children.length > 0) {
             printLeaves(child);
         } else {
-            console.log(child);
-        } 
+            console.log(child.value);
+        }
     }
 }
 

@@ -10,9 +10,8 @@ function compressString(str) {
     let compressedArray = [];
 
     for (let i = 0; i < strArray.length; i++) {
-        if (strArray[i] !== strArray[i + 1])
-        {
-            compressedArray.push(strArray[i], count)
+        if (strArray[i] !== strArray[i + 1]) {
+            compressedArray.push(strArray[i], count);
             count = 1;
         } else {
             count++;
@@ -27,5 +26,5 @@ function compressString(str) {
     }
 }
 
-compressString('abcccccaaa');
-compressString('aabcccccaaa');
+console.log(compressString('abcccccaaa'));
+console.log(compressString('aabcccccaaa'));
