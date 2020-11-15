@@ -11,17 +11,18 @@
 //     }
 //     return -1;
 //    }
-   
+
 
 function getNameFromList(searchName, listOfNames) {
-    if (typeof searchName !== 'string' || !Array.isArray(listOfNames)) throw new Error('Invalid argument type');
-    let listOfNamestDup = listOfNames;
-    for (let i = 0; i < listOfNamestDup.length; i++) {
-        if (listOfNamestDup[i] === searchName) return listOfNamestDup[i];
+    if (typeof searchName !== 'string' || !Array.isArray(listOfNames)) {
+        throw new Error('Invalid argument type');
     }
+
+    for (let i = 0; i < listOfNames.length; i++) {
+        if (listOfNames[i] === searchName) return i;
+    }
+
     return -1;
 }
 
-
-
-getNameFromList('Eliseo', ['Jorge', 'Pedro', 'Eliseo', 'Ravi']);
+console.log(getNameFromList('Eliseo', ['Jorge', 'Pedro', 'Eliseo', 'Ravi']));
