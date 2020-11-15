@@ -6,18 +6,14 @@ class Queue {
   }
   enqueue(value) {
     if (this.isFull()) return false;
-    this.storage = [...this.storage, value];
+    this.storage.push(value); // add at end
     return true;
   }
   dequeue() {
     // if the queue is empty, return null
     if (this.isEmpty()) return null;
     // otherwise remove element from the front and return
-
-    let first = this.storage[0];
-    this.storage = this.storage.slice(1, this.storage.length);
-    return first;
-
+    return this.storage.shift();
   }
   peek() {
     if (this.isEmpty()) return null;
@@ -41,5 +37,3 @@ console.log(queue.dequeue()); // 9
 console.log(queue.dequeue()); // 4
 console.log(queue.dequeue()); // 20
 console.log(queue.isEmpty()); // true
-
-

@@ -1,0 +1,249 @@
+
+Task 1:
+What is multithreading, multiprocessing and multitasking in the context of computer science?
+
+Multiprocessing means using more than one processor in a single computer system, and hence multiple processes can be executed at a time and more work is done
+in a shorter amount of time. It also allows that if one processor fails, the work only slows down, but it does not get complitely interrupted.
+
+Multitasking is a process that happens when several tasks share the same processing resources and main memory and are being executed on a concurrent manner. 
+Multitasking creates an ilussion that the tasks are being performed at the same time, but they're actually performed separately. To do so, the computer executes 
+segments of multiple taks in an interleaved manner, after a segment is executed the computer saves it's state and switched to a segment of another taks, this 
+can be done in fixed time intervals (pre-emptive multitasking) or the running program may be coded to signal to the supervisory software when it can be 
+interrupted (cooperative multitasking).
+
+Multi threading is an execution model that allows a single process to have multiple code segments running separately. For examply, an audio player can have one 
+thread which handles audio the playing of a song, and another that manages the playlist queue.
+
+
+Task 2:
+What is continuous integration and feature driven development?
+
+
+Continuous integration is the practice of merging all developers' branches to the mainline at least everyday or preferably many times a day, to lower the risk 
+of integration conflicts. Each check-in is then verified by an automated build, allowing teams to detect problems early. 
+How to do it:
+- Developers check out code into their private workspaces
+- When done, commit the changes to the repository
+- The CI server monitors the repository and checks out changes when they occur
+- The CI server builds the system and runs unit and integration tests
+- The CI server releases deployable artefacts for testing
+- The CI server assigns a build label to the version of the code it just built
+- The CI server informs the team of the successful build
+- If the build or tests fail, the CI server alerts the team
+- The team fixes the issue at the earliest opportunity
+- Continue to continually integrate and test throughout the project
+
+Feature Driven Development is an Agile Framework where the development process is organized around making progress on features. Features in this context does not
+necessarilly refers to product features, here the concept is similar to user stories, for example, a login process. It follows a 5 step development system:
+1. Develop an overall model
+2. Build a features list
+3. Plan by feature
+4. Design by feature
+5. Develop by feature
+
+
+Task 3:
+Explain CORS? What are the ways to resolve CORS problems? What does fetch() api no-cors flag do?
+
+It's an acronym for cross-origin resource sharing standard. The CORS standard manages cross-origin requests, meaning requests for resources that come from a 
+different server. It allows servers to specify not only who can access the assets, but which HTTP request methods are allowed from external resources.
+
+CORS issues usually arise when the browser sends an HTTP OPTIONS request and the API does not send back a response with the proper headers, then the browser will 
+not make the API request. Such problem cannot be fixed on the UI, the best solution is to have it fixed on the API, if it's your company's API you can just get 
+in touch with the backend team, and if it's third party you can try getting in touch with their support team. If that is not an option you can make a proxi like 
+component to make the HTTP OPTIONS request, get the response from the API add the appropiate headers to it and send it to the UI.
+
+
+
+Task 4:
+Write about best practices of Unit testing. How to unit test frontend frameworks like ReactJS, VueJS and AngularJS code?
+
+Unit testing is important because it validates that every piece of the application works properly at the moment it was implemented, but also when new features 
+are added. It helps to detect errors at an early stage, when they can be solved without causing other features to break. There are things that must be taken 
+into account when writing unit tests:
+- Tests must be trustworthy. If we detect that a test sometimes fails when there's no error in the code, or if it doesn't always return the same results when 
+nothing is changed between runs, it cannot be trusted.
+- As all the code, they should be readable and easy to understand for other developers and even for the author in the future.
+- They should be properly named, including the methd being tested, the scenario and the expected behaviour.
+- They should verify only one use case.
+- They should have no dependencies, meaning that they can be run by themselves without affecting each other.
+- They should go hand in hand with the writing of the application code (before or during), and reviewed in the code review process.
+- Every time a bug is fixed, a test should be written to ensure that the bug is fixed.
+
+What are the ways to reduce load times of web applications? How would you test a web app for performance?
+
+If it's your choice, opt for a performance-optimized hosting service, since cheap services can affect your app's loading time, 
+because they usually let multiple websites share resources on overloaded servers.
+
+Optimize images' file sizes or use lazy loading, yo can do the latest by using event handlers or a library if necessary, although
+Chrome, Opera, Edge and Firefox now support the loading attribute: <img src="image.png" loading="lazy">.
+
+Reduce number of redirects.
+
+Allow cahching on the site. Caching stores copies of your site's files, minimizing the work needed for the server to generate and serve a
+web page to a visitor's browser.
+
+Turn your web app into a Progressive Web App, which uses cache to store the app's resources and lets it run without an internet 
+connection. 
+
+One way to test a web app's performance is using lighthouse inside the Chrome Developer Tools, which audits things like accesibility, performance, SEO 
+and generates a report with the issues that are slowing  down your app's loading time. For a more in depth analysis 
+there are tools  WebPageTest, which allows you to run multiple concurrent tests and gives you a number of location, device, and
+connection speed options to choose from. 
+
+
+Task 6:
+What are the principles of REST API design? Give a short example of levels in Richardson Maturity Model.
+
+Rest stands for Representational State Transfer, and is the most widely used architechtural style for building APIs, it tends to be the prefered style in web 
+services, because it requires less bandwidth than other technologies.
+
+There are many rules that have to be followed, but the two most important are using the HTTP language (verbs and status codes) and a specfific pattern of routes 
+and endpoints, meaning that requesting information about a resource should be as simple as invoking its URL. Other charachteristics include that UI and request-gathering
+are handled on the client side and data access, workload management and security are handled in the server side; client server operations should be stateles and 
+any state management should be done on teh client; all resources should allow caching, unless explicitly indicated; allows an architecure composed of multiple 
+layers of servers; normally a server send statics representations of resources, like JSON or XML, but they can also serve executable code.
+
+The levels of the Richardson Maturity Model indicate the level of REST compliance of a web service design. On level 0, all the requests are handled on the same 
+URL and the protocol's function (usually it's http but ir doesn't have to) is to tunnel the requests and responses, for example how it would be done using the 
+SOAP model. Level 1 is when endpoits are used to distinguish between different information sources, like https://api.openweathermap.org/data/2.5/weather?q=berlin 
+or https://api.openweathermap.org/data/2.5/weather?q=london. Level 2 is when http verbs are used in a similar way as CRUD operations work when dealing with 
+databases, for example to update or delete a resorce. Level 3 introduces what is known as HATEOAS (Hypertext As The Engine Of Application State), which adresses 
+the question of what can be donde with the information, for example, in an applicaction for booking doctor's appointments, if a list of available slots was 
+requested, the response would inlcude URIs where an appointment at this slot could be made.
+
+
+Task 8:
+What is SQL Injection attack? What are the ways to protect a web app against such an attack? What is Cross Site Scripting?
+
+SQL Injection is a type of attack, in which SQL commands are in injected through input fields in order to change the syntax of SQL queries, for example a -- can be  
+inserted (which in SQL is the syntax for comment) or an extra instruction or a statement that evaluates to rteu(1=1). This usually happens when tha dynamic dara is used directly to contruct the query. 
+A succesful attack can allow the hacker to read sensible data from the database or modify it (delete, update or insert). 
+
+To avoid such attacks, the code should be written in a way that it doesn't directly use the user input. For example, with MySQL or PosgreSQL we use placeholders (WHERE 
+dob = ? and bank_account = ?) and pass the response value(s) in an array, and what happens is that the input values are sanituzed, meaning that they are filtered to 
+escape unwanted charachters.
+
+Cross Site Scripting is technic fo injecting Javascript into websites. Te way it happens is that script tag is inserted through an input and as the browser 
+interprets it as HTML it runs the code. There's different types of XSS, the script can be inmediately executed and reflected to the user; ir can be stored in a DB 
+and be shown by any user that visits that section; or it can land on the DOM. To avoid this vulnerability, input should be sanitized, meaning that it has to escape
+all HTML meaningful charachters, this can be done be libraries, like DOMPurify.
+
+
+Task 13: 
+What is a NoSQL database? What are its advantages over relational databases?
+
+NoSQL (Not Only Structured Query Language or Non Structured Query Language) are databases that store 
+data in formats other than relational tables.
+
+An advantage over SQL databases is their flexibility: SQL databases require a predefined schema, and 
+that can be difficult to acomplish when you are dealing with data that comes in all shapes and sizes, 
+it can also become problematic when project's requirements are changing constantly. NoSQL 
+databases, on the contrary, allow develpers to store less structured data. 
+
+For expample, if along the way the developer ecounters pieces of data that where not contenplated in the 
+original schema, using a SQL database would require to add new columns, and all of the gaps would be filled 
+with null values, which could lead to bugs if not taken into account. In the case of a MongoDB database, 
+for example, where data is represented as JSON objects, you can just add or ommit key value pairs 
+without affecting the other data records.
+
+SQL databases tend to scale-up vertically, which requires migrating to larger servers, whereas most NoSQL 
+databases can be scaled-out horizonatlly, because they tend to store "rows" in separate documents. 
+
+A weak point could be that the way to store relationship data leads to repetition, but nowadays that storing 
+has become much less expensive, that represents no mayor issue. Also, there's debate regarding which kind of data 
+base works better for quering when relationships are complex. If NoSQL databases are designed in a way that 
+data that should be accesed together is stored together, then it works fine, because it requires no joints.
+
+Instead of using rows and columns, NoSQL databases tend to replicate data structures that are common in software 
+development, and that makes develpers lifes easear.
+
+
+
+Tasklist 7
+
+Task 1:
+What is Garbage Collection and how does it work in case of Javascript? What is the advantage of mark and sweep over reference counting? 
+
+Garbage Collection is a type of memory management process in which of unreachable values are taken out of memory. 
+
+In Javascript, reachable values are those that need still need to be accesible, for example global variables, variables or parameters in the current function 
+or the ones in the nested functions or properties of objects referenced by other objects which exist in the global scope or in the current function's scope.
+
+The Javascript engine performs a process called garbage collector which keeps track of all the values and removes the ones that become unreachable. The way it 
+works is that the engine visits all the roots and marks them (so that it doesn't visit them more than once), then visits it's references and marks them too. 
+Everything that is not marked in the process is taken out of the memory. 
+
+That is the basic algorithm, but there are also more advanced versions of Garbage Collection, for example, objects are divided into new and old ones, the second
+been the ones that have survived a number of runs, and they are visited less often; also if the collection is to big the engine can split it into samller collections
+and run de sweeps separately.
+
+Reference counting, as the name usggests consists in counting the times an object is referenced and if the count is 0, it gets taken out of memory. The biggest 
+throwback is that it cannot efectively deal with cycles, which leads to memory leaks. 
+
+
+Task 2:
+Explain event delegation in DOM and JS. What is the difference between event.target and event.currentTarget?
+
+Event delegation means using event propagation to add only one event listener to more than one element. For example, if we have a form with several input fields,
+instead of adding an event listener for each input we can attach one to the parent element (the form). The event.target property refers to the element on 
+which the event occured, whereas event.currentTarget refers to the element to which the event listener is attached to.
+
+
+Task 3:
+What is a closure? Explain Lexical environment and Environment Record with reference to closures.
+
+Closure is a property of Javascript functions that allows to preserve the state of variables without having to declare them in the global scope. A closure 
+is a function that has access to its outer function scope even after the outer function has returned. In practice, we have an outer function that declares 
+a variable (for example, a counter) and returns a function that updates the variable, then the function is stored in a variable, and every time it's called, 
+the prevoius updates to the variable declared in the outer function are preserved.
+
+Every time the Javascript engine creates an execution context to execute code, a lexical environment is created (a data structure that holds the variables 
+and functions). That context is composed of and environment record, which is where the declarations are stored, and a reference to it's outer environment.
+When a function completes, its execution context is removed from the stack, but its lexical environment may remain if that lexical environment is referenced 
+by any other lexical environments, and so, their varibles are kept in memory. 
+
+Following that principle, if we assign the value of the inner function to a variable, when it's executed the Javascript engine will look for the variable in the 
+outer lexical environment, meaning the environment of the outer function which is still there in the memory.
+
+
+Task 4:
+What's the difference between feature detection, feature inference, and using the UA string?
+The three are practices to determine wheter a browser supports a determined feature. Feature detection consists in directly check if the browser supports the 
+feature in question, if so proceed in one way (if('localStorage' in window) or if (navigator.geolocation)), and if not, do something else. In feature inference 
+the developer makes asumptions by checking one feature, for example, you can check for getElementsByTagName and asume that also getElementById is supported. The 
+UA (User Agent) String is a string that can by accessed via navigator.userAgent and it contains information about he browser environment you are targeting, that is
+which browser, version and on which operating system it's being used. 
+
+
+Task 5:
+Describe event bubbling. What problems can it cause and how do you stop it? 
+
+When an event occurs on an element it propagates in three phases: 
+Capture phase: From the window down through the ancestors of the element.
+Target phase: The event gets triggered on the element on which the user has clicked.
+Bubbling phase: From the element upwards to his ancestors.
+
+Event bubbling means that when an event happens on an element, it will run the handlers (the function passed as the second argument of addEventListener) on 
+it and his ancestors. Not all events bubble, but most of them do, and many up till the window. This behaviour can be desirable, for example, if you want add an 
+event listener to a form instead of doing it to every input field, but it can also cause unexpected behaviours if one of the ancestor elemets is listening to 
+the same type of event. If you don't want an event to bubble you can use event.stopPropagation().
+
+Task 6:
+What is an event loop in the browser? Explain the concept of worker threads in browsers. What are the limitations of worker threads?
+
+JavaScript code runs single threaded, meaning that here is just one thing happening at a time. The way the javascript handles it is through the call stack, which
+is a is a LIFO queue (Last In, First Out) which keeps track of all the code that must be run. The event loop continuously adds the new functions that need to be 
+executed to the stack and runs the one that needs to be run. This is way a synchronous action that takes to long or an infinite loop causes a website or an 
+application to crash. ES6 introduced the concept of Job Queue, wich allows resolved promises to be executed as soon as the current function is resolved.
+
+Web Workers allow us to perform tasks that can be laborious to process in a thread separate from the UI. To do so, a Worker() object is created, which runs a 
+specific that runs a JavaScript file. Data is sent between workers and the main thread via a system of messages using the postMessage() method for sending, and 
+the onmessage event handler to respond.
+
+One limitation of web workers is that they can't manipulate the DOM or use some methods of the window object, instead they usually work with complex operations
+that can take a long time to perform.
+
+
+
+

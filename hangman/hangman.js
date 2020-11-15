@@ -1,4 +1,6 @@
 
+(function () {
+
 const words = ['array', 'list', 'queue', 'stack'];
 const resultWordElement = document.getElementById('word');
 const hangmanElements = document.querySelectorAll('.hangman');
@@ -102,3 +104,6 @@ playAgainElement.addEventListener('click', function reset() {
     
     window.addEventListener('keydown', playWithKeyBoard);
 });
+
+})();
+

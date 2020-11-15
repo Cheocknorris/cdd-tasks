@@ -4,17 +4,11 @@ class Stack {
     }
 
     push(value) {
-        this.store = [...this.store, value];
+        this.store.push(value);
     }
 
     pop() {
-        if (this.store.length === 0) {
-            return null
-        } else {
-            let last = this.store[this.store.length - 1];
-            this.store.length = this.store.length - 1;
-            return last;
-        }
+        return this.store.pop();
     }
 
     isEmpty() {
@@ -33,12 +27,11 @@ class Stack {
 
 let stack = new Stack();
 
-
-
-
 console.log("is empty: ", stack.isEmpty());
 console.log("peek: ", stack.peek());
 stack.push(4);
 stack.push(5);
-stack.push(6);
-console.log(stack);
+console.log("is empty: ", stack.isEmpty());
+console.log("peek: ", stack.peek());
+console.log("pop: ", stack.pop());
+console.log("peek: ", stack.peek());

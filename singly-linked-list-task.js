@@ -49,8 +49,7 @@ class SinglyLinkedList {
 
         while (headDup !== null) {
             if (headDup.value === value) {
-                return headDup;
-                break;
+                return headDup;                
             } else {
                 headDup = headDup.next;
             }
@@ -58,10 +57,30 @@ class SinglyLinkedList {
         return null;
     }
 
-    addNodeAtGivenPosition(value, position) {
-    // Hint: traverse the list until you reach the given position and then insert the new node.
-    // You might need two different pointers to achieve this.
-    }
+    // addNodeAtGivenPosition(value, position) {
+    // // Hint: traverse the list until you reach the given position and then insert the new node.
+    // // You might need two different pointers to achieve this.
+
+    //     let newListItem = new Node(value);
+    //     let count = 0;
+    //     let headDup = this.head;
+
+    //     while (headDup !== null) {
+    //         count ++
+    //         if (!this.head) {
+    //             this.head = newListItem;
+    //             break;
+    //         } else if (position === 0) {
+    //             this.head = new Node(value, this.head);
+    //             break;
+    //         } else if (position === count) {
+    //             while (headDup !== null) {
+    //                 count++
+
+    //             }
+    //         }
+    //     }
+    // }
 }
 
 let listItem1 = new Node(100);
@@ -73,3 +92,11 @@ let list = new SinglyLinkedList(listItem1);
 list.addNodeInFrontOfList(50);
 list.addNodeAtEndOfList(300);
 list.getNodeWithValue(3);
+// list.addNodeAtGivenPosition(150, 3);
+
+let headDup = list.head;
+
+while (headDup !== null) {
+    console.log(headDup.value);
+    headDup = headDup.next;
+}
