@@ -9,7 +9,7 @@ class SearchInterface {
         && this.dataBase.searchById(id)) {
             let result = this.dataBase.searchById(id);
             this.cacheSystem.addElement(result);
-            if (this.cacheSystem.isFull()) this.cacheSystem.removeLeastUsed();
+            if (this.cacheSystem.isFull()) this.cacheSystem.removeLastUsed();
             return result; 
         } else if (this.cacheSystem.searchById(id)) {
             let result = this.cacheSystem.searchById(id);
@@ -35,11 +35,12 @@ class CacheSystem {
     searchById(id) {
         if (typeof id !== 'number') throw new Error("Invalid input");
 
-        if (this.isEmpty()) return  false;
+        if (this.isEmpty()) return false;
 
         for (let i = 0; i < this.store.length; i++) {
             if (this.store[i].id === id) {
                 let result = this.store[i];
+                console.log('in the cache');
                 return result;
             } 
         }
@@ -56,7 +57,7 @@ class CacheSystem {
             }
         }
     }
-    removeLeastUsed() {
+    removeLastUsed() {
         let storeDup = this.store;
         storeDup.splice(0, 1);
         this.store = [...storeDup];
@@ -81,6 +82,7 @@ class DataBase {
 
         for (let i = 0; i < this.store.length; i++) {
             if (this.store[i].id === id) {
+                console.log('in the db');
                 return this.store[i];
             } 
         }

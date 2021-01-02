@@ -1,4 +1,3 @@
-// For a givem argument number print that number of lines and one * for each
 
 function printStar(number) {
     for (let i = 1; i <= number; i++) {
@@ -8,4 +7,4 @@ function printStar(number) {
     }
 }
 
-function printStar(4);
+printStar(24);
